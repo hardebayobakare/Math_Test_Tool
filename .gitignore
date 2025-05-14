@@ -58,4 +58,7 @@ frontend/node_modules/
 
 # Prisma
 *.db
-*.db-journal 
+*.db-journal
+
+# Database
+migrations/*

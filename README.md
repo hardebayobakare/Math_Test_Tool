@@ -1,4 +1,4 @@
-# Line of Best Fit Learning Tool
+# Line of Best Fit Learning Tool A TouchBistro Assignment
 
 A web application designed to help teachers assess students' understanding of the line of best fit concept. This application provides an interactive platform for students to practice and teachers to evaluate their understanding of statistical concepts.
 
@@ -29,12 +29,9 @@ Before you begin, ensure you have the following installed:
 .
 ├── backend/         # Node.js/Express backend server
 │   ├── src/        # Source code
-│   ├── prisma/     # Database schema and migrations
-│   └── tests/      # Backend tests
 ├── frontend/       # React frontend application
 │   ├── src/        # Source code
 │   ├── public/     # Static files
-│   └── tests/      # Frontend tests
 └── README.md
 ```
 
@@ -45,7 +42,7 @@ Before you begin, ensure you have the following installed:
 1. Install PostgreSQL if you haven't already
 2. Create a new database:
    ```sql
-   CREATE DATABASE touchbistro;
+   CREATE DATABASE <database_name>;
    ```
 
 3. Navigate to the backend directory:
@@ -55,9 +52,9 @@ Before you begin, ensure you have the following installed:
 
 4. Create a `.env` file in the backend directory with the following content:
    ```
-   DATABASE_URL="postgresql://postgres:your_password@localhost:5432/touchbistro"
+   DATABASE_URL="postgresql://postgres:<your_password>@localhost:5432/<database_name>"
    ```
-   Replace `your_password` with your actual PostgreSQL password.
+   Replace `your_password` and `database_name` with your actual PostgreSQL password and name.
 
 5. Install dependencies:
    ```bash
@@ -89,7 +86,7 @@ The backend server will start on http://localhost:5000 by default.
 
 ### Frontend Environment Configuration
 
-1. Navigate to the frontend directory:
+1. Navigate to the frontend directory (On another terminal):
    ```bash
    cd frontend
    ```
@@ -116,10 +113,26 @@ The frontend development server will start on http://localhost:3000.
 ## Testing
 
 ### Backend Testing
-```bash
-cd backend
-npm test
-```
+1. Create a Testing Database
+   ```sql
+   CREATE DATABASE <database_name_test>;
+   ```
+
+2. Create a `.env.test` file in the backend directory with the following content:
+   ```
+   DATABASE_URL="postgresql://postgres:<your_password>@localhost:5432/<database_name_test>"
+   ```
+   Replace `your_password` and `database_name_test` with your actual PostgreSQL password and name.
+
+3. Run test database migrations:
+   ```bash
+   cd backend
+   npm run migrate:test
+   ```
+4. Run Test
+   ```bash
+   npm test
+   ```
 
 ### Frontend Testing
 ```bash
