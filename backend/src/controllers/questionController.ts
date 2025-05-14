@@ -28,7 +28,6 @@ export const getQuestion = async (req: Request, res: Response) => {
 export const submitAttempt = async (req: Request, res: Response): Promise<void> => {
   try {
     const { questionId, student, answer } = req.body;
-    console.log(questionId, student, answer);
     const question = await prisma.question.findUnique({
       where: { id: questionId }
     });
@@ -39,9 +38,7 @@ export const submitAttempt = async (req: Request, res: Response): Promise<void> 
 
     const normalizedAnswer = answer.replace(/\s+/g, '').toLowerCase();
     const normalizedCorrect = question.equation.replace(/\s+/g, '').toLowerCase();
-    console.log(normalizedAnswer, normalizedCorrect);
     const isCorrect = normalizedAnswer === normalizedCorrect;
-    console.log(isCorrect);
 
     let selectedStudent = await prisma.student.findUnique({
       where: { name: student }

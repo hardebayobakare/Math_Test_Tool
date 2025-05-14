@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 import { beforeEach, afterAll } from '@jest/globals';
-import { join } from 'path';
 
 // Ensure we're in test environment
 if (process.env.NODE_ENV !== 'test') {
@@ -9,13 +8,20 @@ if (process.env.NODE_ENV !== 'test') {
 
 const prisma = new PrismaClient();
 
-beforeEach(async () => {
+// Helper function to clean the database
+export async function cleanDatabase() {
+  // Delete in correct order based on foreign key relationships
   await prisma.attempt.deleteMany();
   await prisma.dataPoint.deleteMany();
   await prisma.question.deleteMany();
   await prisma.student.deleteMany();
+}
+
+beforeEach(async () => {
+  await cleanDatabase();
 });
 
 afterAll(async () => {
+  await cleanDatabase();
   await prisma.$disconnect();
 }); 
