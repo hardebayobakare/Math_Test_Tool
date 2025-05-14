@@ -35,7 +35,7 @@ Before you begin, ensure you have the following installed:
    ```
    DATABASE_URL="postgresql://postgres:your_password@localhost:5432/touchbistro"
    ```
-   Replace `your_password` with your actual PostgreSQL password.
+   Replace `your_password` with your actual PostgreSQL password. Assuming you used the default configuration during postgres installation. Otherwise adjust port and database user in the url accordingly.
 
 5. Install dependencies:
    ```bash
@@ -59,7 +59,7 @@ Before you begin, ensure you have the following installed:
 
 This will set up the following database schema:
 - `Student`: Stores student information
-- `Question`: Stores questions and their correct equations
+- `Question`: Stores questions and their correct answers
 - `DataPoint`: Stores coordinate points for each question
 - `Attempt`: Tracks student attempts and responses
 
