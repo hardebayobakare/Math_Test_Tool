@@ -33,7 +33,10 @@ const App: React.FC = () => {
     if (!response.data.isCorrect) {
       setAttempts(attempts + 1);
     } else {
-      fetchData();
+      // Delay for 5 seconds before fetching new question
+      setTimeout(() => {
+        fetchData();
+      }, 3000);
     }
   };
 
@@ -61,12 +64,12 @@ const App: React.FC = () => {
           />
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Submit
           </button>
         </form>
-        {result !== null && <Result result={result} attempts={attempts} />}
+        {result !== null && <Result result={result} attempts={attempts} onNextQuestion={fetchData} />}
       </div>
     </div>
   );
