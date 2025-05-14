@@ -48,15 +48,6 @@ Before you begin, ensure you have the following installed:
    npx prisma migrate dev --name init
    ```
 
-7. Seed the database with sample questions:
-   ```bash
-   npm run seed
-   ```
-   This will populate the database with 5 sample questions, each containing:
-   - A line equation (e.g., "y=1.5x+0.3")
-   - 5 data points that fit the equation
-   - Various difficulty levels and patterns
-
 This will set up the following database schema:
 - `Student`: Stores student information
 - `Question`: Stores questions and their correct answers
