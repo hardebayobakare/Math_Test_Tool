@@ -1,9 +1,11 @@
 import { Router } from 'express';
-import { getQuestion, checkAnswer } from '../controllers/questionController';
+import { getQuestion, submitAttempt } from '../controllers/questionController';
+import { validateSubmitAttempt } from '../validations/questionValidation';
+import { handleValidationErrors } from '../middlewares/handleValidationErrors';
 
 const router = Router();
 
 router.get('/', getQuestion);
-router.post('/check', checkAnswer);
+router.post('/submit', validateSubmitAttempt, handleValidationErrors, submitAttempt);
 
 export default router;
