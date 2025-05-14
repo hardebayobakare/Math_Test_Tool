@@ -103,7 +103,7 @@ The backend server will start on http://localhost:5000 by default.
    REACT_APP_BACKEND_URL="<backend_url>"
    ```
    Replace `backend_urlL` with the backend url. The default should be `http://localhost:5000`.
-   ```
+
 2. For development:
    ```bash
    npm start
@@ -174,7 +174,4 @@ The backend provides the following main endpoints:
 
 3. Your full name: 
    - Adebayo Bakare
-
-## License
-
-This project is licensed under the ISC License.
+   
