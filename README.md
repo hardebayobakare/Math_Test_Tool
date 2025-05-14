@@ -17,8 +17,8 @@ Before you begin, ensure you have the following installed:
 ├── frontend/        # React frontend application
 └── README.md
 ```
-### Backend Setup
-## Database Setup
+## Backend Setup
+### Database Setup
 
 1. Install PostgreSQL if you haven't already
 2. Create a new database:
@@ -63,7 +63,31 @@ This will set up the following database schema:
 - `DataPoint`: Stores coordinate points for each question
 - `Attempt`: Tracks student attempts and responses
 
+### Database Schema Details
+
+#### Student
+- Tracks individual student information
+- Contains unique student names
+- Links to student attempts
+
+#### Question
+- Stores question data including correct equations
+- Contains sets of 5 data points
+- Tracks all attempts made for each question
+
+#### DataPoint
+- Stores x and y coordinates for questions
+- Each point is linked to a specific question
+- Uses floating-point numbers for precise coordinates
+
+#### Attempt
+- Records student responses
+- Tracks attempt numbers (limited to 3 per question)
+- Links attempts to both students and questions
+- Stores whether the attempt was correct
+
 ### Frontend Setup
+[To be added: Testing instructions]
 
 ## Development Questions
 
@@ -75,28 +99,7 @@ This will set up the following database schema:
 
 3. Your full name: Adebayo Bakare
 
-## Database Schema Details
 
-### Student
-- Tracks individual student information
-- Contains unique student names
-- Links to student attempts
-
-### Question
-- Stores question data including correct equations
-- Contains sets of 5 data points
-- Tracks all attempts made for each question
-
-### DataPoint
-- Stores x and y coordinates for questions
-- Each point is linked to a specific question
-- Uses floating-point numbers for precise coordinates
-
-### Attempt
-- Records student responses
-- Tracks attempt numbers (limited to 3 per question)
-- Links attempts to both students and questions
-- Stores whether the attempt was correct
 
 ## Running the Application
 
