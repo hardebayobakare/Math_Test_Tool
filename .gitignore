@@ -50,7 +50,6 @@ yarn-error.log*
 backend/dist/
 backend/build/
 backend/node_modules/
-backend/migrations/*
 
 # Frontend specific
 frontend/dist/
@@ -60,6 +59,3 @@ frontend/node_modules/
 # Prisma
 *.db
 *.db-journal
-
-# Database
-migration.sql
