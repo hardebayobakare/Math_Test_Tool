@@ -1,0 +1,54 @@
+// schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  attempts  Attempt[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Question {
+  id          Int       @id @default(autoincrement())
+  dataPoints  DataPoint[]
+  equation    String    // The correct equation (e.g. "y=1.5x+0.3")
+  attempts    Attempt[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model DataPoint {
+  id         Int      @id @default(autoincrement())
+  questionId Int
+  question   Question @relation(fields: [questionId], references: [id])
+  x          Float
+  y          Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([questionId])
+}
+
+model Attempt {
+  id         Int      @id @default(autoincrement())
+  studentId  Int
+  student    Student  @relation(fields: [studentId], references: [id])
+  questionId Int
+  question   Question @relation(fields: [questionId], references: [id])
+  answer     String   
+  isCorrect  Boolean
+  attemptNumber Int   
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([studentId])
+  @@index([questionId])
+}
