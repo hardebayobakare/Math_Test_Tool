@@ -1,23 +1,45 @@
-# Line of Best Fit Learning Tool A TouchBistro Assignment
+# Line of Best Fit Learning Tool
 
-A web application to help teachers assess students' understanding of the line of best fit concept.
+A web application designed to help teachers assess students' understanding of the line of best fit concept. This application provides an interactive platform for students to practice and teachers to evaluate their understanding of statistical concepts.
+
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Project Structure](#project-structure)
+- [Backend Setup](#backend-setup)
+  - [Database Setup](#database-setup)
+  - [Environment Configuration](#environment-configuration)
+  - [Running the Backend](#running-the-backend)
+- [Frontend Setup](#frontend-setup)
+  - [Environment Configuration](#frontend-environment-configuration)
+  - [Running the Frontend](#running-the-frontend)
+- [Testing](#testing)
+- [API Documentation](#api-documentation)
+- [Tech Stack](#tech-stack)
 
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
 - Node.js (v14 or higher)
 - PostgreSQL (v12 or higher)
-- npm or yarn
+- npm or yarn package manager
 
 ## Project Structure
 
 ```
 .
-├── backend/         # Node.js backend server
-├── frontend/        # React frontend application
+├── backend/         # Node.js/Express backend server
+│   ├── src/        # Source code
+│   ├── prisma/     # Database schema and migrations
+│   └── tests/      # Backend tests
+├── frontend/       # React frontend application
+│   ├── src/        # Source code
+│   ├── public/     # Static files
+│   └── tests/      # Frontend tests
 └── README.md
 ```
+
 ## Backend Setup
+
 ### Database Setup
 
 1. Install PostgreSQL if you haven't already
@@ -35,7 +57,7 @@ Before you begin, ensure you have the following installed:
    ```
    DATABASE_URL="postgresql://postgres:your_password@localhost:5432/touchbistro"
    ```
-   Replace `your_password` with your actual PostgreSQL password. Assuming you used the default configuration during postgres installation. Otherwise adjust port and database user in the url accordingly.
+   Replace `your_password` with your actual PostgreSQL password.
 
 5. Install dependencies:
    ```bash
@@ -48,54 +70,102 @@ Before you begin, ensure you have the following installed:
    npx prisma migrate dev --name init
    ```
 
-This will set up the following database schema:
-- `Student`: Stores student information
-- `Question`: Stores questions and their correct answers
-- `DataPoint`: Stores coordinate points for each question
-- `Attempt`: Tracks student attempts and responses
+### Running the Backend
 
-### Database Schema Details
+1. For development:
+   ```bash
+   npm run dev
+   ```
 
-#### Student
-- Tracks individual student information
-- Contains unique student names
-- Links to student attempts
+2. For production:
+   ```bash
+   npm run build
+   npm start
+   ```
 
-#### Question
-- Stores question data including correct equations
-- Contains sets of 5 data points
-- Tracks all attempts made for each question
+The backend server will start on http://localhost:5000 by default.
 
-#### DataPoint
-- Stores x and y coordinates for questions
-- Each point is linked to a specific question
-- Uses floating-point numbers for precise coordinates
+## Frontend Setup
 
-#### Attempt
-- Records student responses
-- Tracks attempt numbers (limited to 3 per question)
-- Links attempts to both students and questions
-- Stores whether the attempt was correct
+### Frontend Environment Configuration
 
-### Frontend Setup
-[To be added: Testing instructions]
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
 
-## Development Questions
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-1. Do you have production experience with Node prior to the submission of this code challenge? If yes, for how long? 0ver 7 years
+### Running the Frontend
 
+1. For development:
+   ```bash
+   npm start
+   ```
 
-2. Do you have production experience with React prior to the submission of this code challenge? If yes, for how long? Over 5 years
+2. For production build:
+   ```bash
+   npm run build
+   ```
 
-
-3. Your full name: Adebayo Bakare
-
-
-
-## Running the Application
-
-[To be added: Application running instructions]
+The frontend development server will start on http://localhost:3000.
 
 ## Testing
 
-[To be added: Testing instructions]
+### Backend Testing
+```bash
+cd backend
+npm test
+```
+
+### Frontend Testing
+```bash
+cd frontend
+npm test
+```
+
+## API Documentation
+
+The backend provides the following main endpoints:
+
+- `GET /api/questions` - Retrieve all questions
+- `GET /api/students` - Retrieve all students
+- `POST /api/students` - Create a new student
+- `POST /api/attempts` - Submit a student's attempt at a question
+
+For detailed API documentation, please refer to the API documentation in the backend directory.
+
+## Tech Stack
+
+### Backend
+- Node.js with Express
+- TypeScript
+- PostgreSQL with Prisma ORM
+- Jest for testing
+- CORS for cross-origin resource sharing
+- Body-parser for request parsing
+
+### Frontend
+- React 19
+- TypeScript
+- Tailwind CSS for styling
+- Axios for API requests
+- Jest and React Testing Library for testing
+
+## Development Questions
+
+1. Do you have production experience with Node prior to the submission of this code challenge? 
+   - Yes, over 7 years
+
+2. Do you have production experience with React prior to the submission of this code challenge? 
+   - Yes, over 5 years
+
+3. Your full name: 
+   - Adebayo Bakare
+
+## License
+
+This project is licensed under the ISC License.

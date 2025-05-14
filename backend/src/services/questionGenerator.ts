@@ -51,8 +51,8 @@ export function calculateLineOfBestFit(coordinates: Coordinate[]): { slope: numb
   const yIntercept = meanY - slope * meanX;
   
   return {
-    slope: Number(slope.toFixed(2)),
-    yIntercept: Number(yIntercept.toFixed(2))
+    slope: Number(slope.toFixed(1)),
+    yIntercept: Number(yIntercept.toFixed(1))
   };
 }
 

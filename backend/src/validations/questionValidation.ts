@@ -8,8 +8,8 @@ export const validateSubmitAttempt = [
     body('questionId')
     .isInt().withMessage('Question ID must be an integer')
     .notEmpty().withMessage('Question ID is required'),
-    body('studentId')
-    .isInt().withMessage('Student ID must be an integer')
+    body('student')
+    .isString().withMessage('Student ID must be a string')
     .notEmpty().withMessage('Student ID is required')
 ];
 

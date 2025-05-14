@@ -27,32 +27,43 @@ export const getQuestion = async (req: Request, res: Response) => {
  */
 export const submitAttempt = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { questionId, studentId, answer } = req.body;
-
+    const { questionId, student, answer } = req.body;
+    console.log(questionId, student, answer);
     const question = await prisma.question.findUnique({
       where: { id: questionId }
     });
-
     if (!question) {
       res.status(404).json({ error: 'Question not found' });
       return;
     }
 
+    const normalizedAnswer = answer.replace(/\s+/g, '').toLowerCase();
+    const normalizedCorrect = question.equation.replace(/\s+/g, '').toLowerCase();
+    console.log(normalizedAnswer, normalizedCorrect);
+    const isCorrect = normalizedAnswer === normalizedCorrect;
+    console.log(isCorrect);
+
+    let selectedStudent = await prisma.student.findUnique({
+      where: { name: student }
+    });
+    if (!selectedStudent) {
+      const newStudent = await prisma.student.create({
+        data: {
+          name: student
+        }
+      });
+      selectedStudent = newStudent;
+    }
     const previousAttempts = await prisma.attempt.count({
       where: {
         questionId,
-        studentId
+        studentId: selectedStudent.id
       }
     });
-
-    const normalizedAnswer = answer.replace(/\s+/g, '').toLowerCase();
-    const normalizedCorrect = question.equation.replace(/\s+/g, '').toLowerCase();
-    const isCorrect = normalizedAnswer === normalizedCorrect;
-
     const attempt = await prisma.attempt.create({
       data: {
         questionId,
-        studentId,
+        studentId: selectedStudent.id,
         answer,
         isCorrect,
         attemptNumber: previousAttempts + 1
@@ -63,7 +74,6 @@ export const submitAttempt = async (req: Request, res: Response): Promise<void> 
       isCorrect,
       attemptNumber: attempt.attemptNumber,
     });
-
   } catch (error) {
     console.error('Error submitting attempt:', error);
     res.status(500).json({ error: 'Failed to submit attempt' });

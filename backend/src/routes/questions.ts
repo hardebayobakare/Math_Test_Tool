@@ -6,6 +6,6 @@ import { handleValidationErrors } from '../middlewares/handleValidationErrors';
 const router = Router();
 
 router.get('/', getQuestion);
-router.post('/submit', validateSubmitAttempt, handleValidationErrors, submitAttempt);
+router.post('/check', validateSubmitAttempt, handleValidationErrors, submitAttempt);
 
 export default router;

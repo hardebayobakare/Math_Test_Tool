@@ -9,7 +9,7 @@ const Question: React.FC<QuestionProps> = ({ dataPoints }) => {
     <div>
       <h2>Data Points:</h2>
       <ul>
-        {dataPoints.map((point, index) => (
+        {dataPoints?.map((point, index) => (
           <li key={index}>({point.x}, {point.y})</li>
         ))}
       </ul>
