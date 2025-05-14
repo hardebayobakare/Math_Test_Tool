@@ -1,10 +1,11 @@
 import React from 'react';
+import { DataPoint } from '../types/api';
 
 interface QuestionProps {
-  dataPoints: any[];
+  dataPoints: DataPoint[];
 }
 
-const Question: React.FC<QuestionProps> = ({ dataPoints }) => {
+const Question: React.FC<QuestionProps> = ({ dataPoints = [] }) => {
   return (
     <div className="p-4 bg-white shadow rounded-lg max-w-md mx-auto">
       <h2 className="text-xl font-semibold text-gray-800 mb-3">Data Points:</h2>

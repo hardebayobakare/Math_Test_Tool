@@ -98,7 +98,13 @@ The backend server will start on http://localhost:5000 by default.
 
 ### Running the Frontend
 
-1. For development:
+1. Create a `.env` file in the frontend directory with the following content:
+   ```
+   REACT_APP_BACKEND_URL="<backend_url>"
+   ```
+   Replace `backend_urlL` with the backend url. The default should be `http://localhost:5000`.
+   ```
+2. For development:
    ```bash
    npm start
    ```
@@ -134,22 +140,13 @@ The frontend development server will start on http://localhost:3000.
    npm test
    ```
 
-### Frontend Testing
-```bash
-cd frontend
-npm test
-```
-
 ## API Documentation
 
 The backend provides the following main endpoints:
+- `POST /api/students` - Create a student profile
+- `GET /api/questions` - Retrieve a question
+- `POST /api/questions/check` - Submit a student attempt
 
-- `GET /api/questions` - Retrieve all questions
-- `GET /api/students` - Retrieve all students
-- `POST /api/students` - Create a new student
-- `POST /api/attempts` - Submit a student's attempt at a question
-
-For detailed API documentation, please refer to the API documentation in the backend directory.
 
 ## Tech Stack
 
@@ -166,7 +163,6 @@ For detailed API documentation, please refer to the API documentation in the bac
 - TypeScript
 - Tailwind CSS for styling
 - Axios for API requests
-- Jest and React Testing Library for testing
 
 ## Development Questions
 
