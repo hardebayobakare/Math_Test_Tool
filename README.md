@@ -1,4 +1,4 @@
-# Line of Best Fit Learning Tool A TouchBistro Assignment
+# Line of Best Fit Learning Tool
 
 A web application designed to help teachers assess students' understanding of the line of best fit concept. This application provides an interactive platform for students to practice and teachers to evaluate their understanding of statistical concepts.
 
